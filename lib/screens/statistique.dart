@@ -71,7 +71,7 @@ class _StatisticPageState extends State<StatisticPage> {
                       text: "Global Cases of ",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 24,
+                        fontSize: 20,
                         color: Colors.black87,
                       ),
                       children: [
@@ -88,7 +88,7 @@ class _StatisticPageState extends State<StatisticPage> {
                 Padding(
                   padding: EdgeInsets.all(16),
                   child: Container(
-                    height: 170,
+                    height: 130,
                     child: Center(child: Image.asset("assets/images/map.png")),
                   ),
                 ),
@@ -135,7 +135,7 @@ class _StatisticPageState extends State<StatisticPage> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
-                      fontSize: 24,
+                      fontSize: 20,
                     ),
                   ),
                   Text(
