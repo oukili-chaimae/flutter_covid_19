@@ -37,7 +37,7 @@ class _StatisticPageState extends State<StatisticPage> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
-                    "STATISTICS",
+                    "Statistics COVID-19 in Morocco",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -45,7 +45,7 @@ class _StatisticPageState extends State<StatisticPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 18),
                 _buildStatistic(),
                 Padding(
                   padding: EdgeInsets.all(16),
@@ -63,39 +63,76 @@ class _StatisticPageState extends State<StatisticPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 16),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: RichText(
                     text: TextSpan(
-                      text: "Global Cases of ",
+                      text: "Number of people vaccinated ",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                         color: Colors.black87,
                       ),
-                      children: [
-                        TextSpan(
-                          text: "COVID 19",
-                          style: TextStyle(
-                            color: AppColors.mainColor,
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Container(
-                    height: 130,
-                    child: Center(child: Image.asset("assets/images/map.png")),
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: <Widget>[
+                      _buildStatCard('First dose', '24 630 999', Colors.green),
+                      _buildStatCard(
+                          'Seconde dose', '23 036 874', Colors.orange),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: <Widget>[
+                      _buildStatCard('Third dose', '4 046 592', Colors.blue),
+                    ],
                   ),
                 ),
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Expanded _buildStatCard(String title, String count, MaterialColor color) {
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Text(
+              count,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -198,10 +235,10 @@ class _StatisticPageState extends State<StatisticPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 _buildStatisticItem(
-                    Colors.blueAccent, "Confirmed", "23,29,539"),
+                    Colors.blueAccent, "Confirmed", "1 078 002"),
                 _buildStatisticItem(
-                    Colors.yellowAccent, "Recovered", "5,92,229"),
-                _buildStatisticItem(Colors.redAccent, "Deaths", "1,60,717"),
+                    Colors.yellowAccent, "Recovered", "996 047"),
+                _buildStatisticItem(Colors.redAccent, "Deaths", "15 047"),
               ],
             ),
           ],
