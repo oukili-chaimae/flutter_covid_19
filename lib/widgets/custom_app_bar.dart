@@ -5,7 +5,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Palette.primaryColor,
+      backgroundColor: Color(0xFF884081),
       elevation: 0.0,
       leading: IconButton(
         icon: const Icon(Icons.menu),
