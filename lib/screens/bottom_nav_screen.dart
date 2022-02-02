@@ -4,6 +4,7 @@ import 'package:flutter_covid_dashboard_ui/screens/scan_page.dart';
 import 'package:flutter_covid_dashboard_ui/screens/scan_screen.dart';
 import 'package:flutter_covid_dashboard_ui/screens/screens.dart';
 import 'package:flutter_covid_dashboard_ui/screens/statistique.dart';
+import 'package:flutter_covid_dashboard_ui/screens/welcome_screen.dart';
 
 class BottomNavScreen extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class BottomNavScreen extends StatefulWidget {
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
   final List _screens = [
+    // WelcomeScreen(),
     HomeScreen(),
     StatisticPage(),
     MyHomePage(),
