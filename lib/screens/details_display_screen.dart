@@ -21,6 +21,7 @@ class _DetailsDisplayScreenState extends State<DetailsDisplayScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.qrCode.type.toString()),
+        backgroundColor: Color(0xFF884081),
       ),
       body: Center(
         child: Column(
@@ -53,10 +54,11 @@ class _DetailsDisplayScreenState extends State<DetailsDisplayScreen> {
                 ? (widget.qrCode.pcr == true
                     ? Container(
                         child: const Icon(
-                        Icons.verified,
-                        color: Colors.green,
-                        size: 50.0,
-                      ))
+                          Icons.verified,
+                          color: Colors.green,
+                          size: 50.0,
+                        ),
+                      )
                     : const Padding(
                         padding: EdgeInsets.all(10.0),
                         child: Icon(
@@ -76,6 +78,10 @@ class _DetailsDisplayScreenState extends State<DetailsDisplayScreen> {
         onPressed: () async {
           await myData.box.remove(widget.qrCode.id);
           widget.callBack(myData.box.getAll());
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => MyHomePage()),
+          );
         },
         tooltip: 'remove',
         child: const Icon(Icons.delete),
