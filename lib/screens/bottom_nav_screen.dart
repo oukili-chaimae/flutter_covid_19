@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_dashboard_ui/main.dart';
+import 'package:flutter_covid_dashboard_ui/screens/parametres.dart';
 import 'package:flutter_covid_dashboard_ui/screens/scan_page.dart';
 import 'package:flutter_covid_dashboard_ui/screens/scan_screen.dart';
 import 'package:flutter_covid_dashboard_ui/screens/screens.dart';
@@ -13,12 +14,12 @@ class BottomNavScreen extends StatefulWidget {
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
   final List _screens = [
-    // WelcomeScreen(),
+    //WelcomeScreen(),
     HomeScreen(),
     StatisticPage(),
     MyHomePage(),
-    Scaffold(),
-    Scaffold(),
+    ParamtersScreen(),
+    //Settings(),
   ];
   int _currentIndex = 0;
 
