@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_covid_dashboard_ui/widgets/custom_app_bar.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class QrCreateScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class _QrCreateScreenState extends State<QrCreateScreen> {
         appBar: AppBar(
           title: Text('QR Code Generator'),
         ),
+        // appBar: CustomAppBar(),
         body: Center(
           child: SingleChildScrollView(
             padding: EdgeInsets.all(24),
