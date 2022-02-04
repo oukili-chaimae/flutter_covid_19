@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_dashboard_ui/screens/screens.dart';
 import 'package:flutter_covid_dashboard_ui/screens/welcome_screen.dart';
