@@ -1,3 +1,15 @@
+import 'package:device_info/device_info.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_covid_dashboard_ui/screens/screens.dart';
+import 'package:objectbox/objectbox.dart';
+import 'package:device_info/device_info.dart';
+import 'package:flutter_nearby_connections/flutter_nearby_connections.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:async';
+import 'dart:math';
+import 'dart:developer' as developer;
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_dashboard_ui/screens/intances.dart';
 import 'package:flutter_covid_dashboard_ui/screens/qr_code.dart';
@@ -21,13 +33,45 @@ class _DetailsScreenState extends State<DetailsScreen> {
   DateTime currentDate = DateTime.now();
   String? errorOthers;
   TextEditingController otherController = TextEditingController();
+  String? myId = '';
+
+  Future<String?> _getId() async {
+    var deviceInfo = DeviceInfoPlugin();
+    if (Platform.isIOS) {
+      var iosDeviceInfo = await deviceInfo.iosInfo;
+      return iosDeviceInfo.identifierForVendor; // Unique ID on iOS
+    } else {
+      var androidDeviceInfo = await deviceInfo.androidInfo;
+      return androidDeviceInfo.androidId; // Unique ID on Android
+    }
+  }
+
+  Future<String> serverPost() async {
+    var res = await http.post(
+      Uri.parse('http://e06b-41-92-19-141.ngrok.io' + '/api/v1/save'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String?>{
+        'udid': myId,
+      }),
+    );
+    developer.log("res.body : ");
+    developer.log(res.body);
+    return res.body;
+  }
 
   @override
   Widget build(BuildContext context) {
+    _getId().then((id) {
+      print('My ID is ${id}');
+      myId = id;
+    });
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Details"),
+        backgroundColor: Color(0xFF884081),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,7 +88,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               },
               child: Text(
                 formatDate(currentDate),
-                style: const TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Color(0xFF884081)),
               )),
           Container(
             child: widget.qrCode.type != 'qrCode'
@@ -70,7 +114,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               elevation: 16,
               underline: Container(
                 height: 3,
-                color: Theme.of(context).primaryColor,
+                color: Color(0xFF884081),
               ),
               onChanged: (String? newValue) {
                 setState(() {
@@ -122,25 +166,34 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   width: 0.0,
                 ),
           ElevatedButton(
-              onPressed: () {
-                if (dropdownValue == 'Autre') {
-                  if (otherController.value.text.toString().isEmpty) {
-                    setState(() {
-                      errorOthers = "Vous devez choisir un type!";
-                    });
-                    return;
-                  }
-                  errorOthers = null;
-                  widget.qrCode.type = otherController.value.text.toString();
-                } else {
-                  widget.qrCode.type = dropdownValue;
+            onPressed: () {
+              print(isSwitched);
+              //print('my id is = ${myId}');
+              serverPost();
+
+              if (dropdownValue == 'Autre') {
+                if (otherController.value.text.toString().isEmpty) {
+                  setState(() {
+                    errorOthers = "Vous devez choisir un type!";
+                  });
+                  return;
                 }
-                widget.qrCode.pcr = isSwitched;
-                widget.qrCode.date = currentDate;
-                myData.box.put(widget.qrCode);
-                widget.callback(widget.qrCode);
-              },
-              child: const Text("Validate"))
+                errorOthers = null;
+                widget.qrCode.type = otherController.value.text.toString();
+              } else {
+                widget.qrCode.type = dropdownValue;
+              }
+              widget.qrCode.pcr = isSwitched;
+              widget.qrCode.date = currentDate;
+              myData.box.put(widget.qrCode);
+              widget.callback(widget.qrCode);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage()),
+              );
+            },
+            child: const Text("Save"),
+          )
         ],
       ),
     );
