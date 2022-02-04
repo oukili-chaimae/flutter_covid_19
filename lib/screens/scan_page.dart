@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_covid_dashboard_ui/screens/details_display_screen.dart';
 import 'package:flutter_covid_dashboard_ui/screens/qr_code.dart';
 import 'package:flutter_covid_dashboard_ui/screens/qr_code_screen.dart';
+import 'package:flutter_covid_dashboard_ui/widgets/custom_app_bar.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'intances.dart';
 
@@ -42,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(),
       body: Center(
           child: myData.qrCodes != null
               ? ListView.builder(
