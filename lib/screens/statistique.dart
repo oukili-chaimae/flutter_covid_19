@@ -1,6 +1,7 @@
 import 'package:flutter_covid_dashboard_ui/core/consts.dart';
 import 'package:flutter_covid_dashboard_ui/core/flutter_icons.dart';
 import 'package:flutter_covid_dashboard_ui/widgets/chart_widget.dart';
+import 'package:flutter_covid_dashboard_ui/widgets/custom_app_bar.dart';
 import 'package:flutter_covid_dashboard_ui/widgets/custom_appbar_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,8 @@ class _StatisticPageState extends State<StatisticPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      // appBar: CustomAppBar(),
+      // backgroundColor: AppColors.backgroundColor,
       body: Stack(
         children: <Widget>[
           Container(
