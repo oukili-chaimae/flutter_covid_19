@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_dashboard_ui/config/palette.dart';
+import 'package:flutter_covid_dashboard_ui/screens/bottom_nav_screen.dart';
 import 'package:flutter_covid_dashboard_ui/screens/home_screen.dart';
 import 'package:flutter_covid_dashboard_ui/screens/welcome_screen.dart';
 import 'package:flutter_covid_dashboard_ui/widgets/custom_app_bar.dart';
@@ -244,7 +245,7 @@ class _infoState extends State<info> {
 
   void _home(BuildContext context) {
     final route = MaterialPageRoute(builder: (BuildContext context) {
-      return HomeScreen();
+      return BottomNavScreen();
     });
     Navigator.of(context).push(route);
   }
