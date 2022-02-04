@@ -40,6 +40,7 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Qr Code Scanner"),
+        backgroundColor: Color(0xFF884081),
       ),
       body: Column(
         children: <Widget>[
